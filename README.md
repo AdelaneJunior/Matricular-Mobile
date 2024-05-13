@@ -1,16 +1,5 @@
-# first
+# MatricuLAR Mobile
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Projeto para disciplina de Programação para Dispositivos Moveis na UEG
+  - Criando uma interface para usuario desenvolvida em flutter
+  - aplicando o back end feito na disciplina de PIASI
