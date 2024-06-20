@@ -38,13 +38,12 @@ class _NecessidadeInsertState extends State<NecessidadeInsertPage> {
   incluir() async {
     try {
       var necessidadeEspecialDTO = NecessidadeEspecialDTOBuilder();
+      necessidadeEspecialDTO.matriculaId = 1;
       necessidadeEspecialDTO.titulo = state.tituloNecessidade.toString();
-      necessidadeEspecialDTO.observacoes =
-          state.observacaoNecessidade.toString();
       final response = await controllerApi.necessidadeEspecialControllerIncluir(
           necessidadeEspecialDTO: necessidadeEspecialDTO.build());
       if (response.statusCode == 200) {
-        Routefly.navigate(routePaths.necessidades.path);
+        Routefly.push(routePaths.necessidades.path);
       } else {
         debugPrint("erro ");
       }
@@ -88,15 +87,6 @@ class _NecessidadeInsertState extends State<NecessidadeInsertPage> {
               const Spacer(
                 flex: 1,
               ),
-              Flexible(
-                  flex: 3,
-                  child: TextField(
-                    onChanged: state.observacaoNecessidade.set,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        label: Text("Observações da Necessidade")),
-                  )),
-              const Spacer(flex: 1),
               Flexible(
                   flex: 3,
                   child: FilledButton(

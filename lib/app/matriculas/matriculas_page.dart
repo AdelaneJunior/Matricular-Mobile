@@ -34,7 +34,7 @@ class MatriculaPage extends StatelessWidget {
     try {
       var dado = await matriculaController
           .matriculaControllerListarMatriculasListagemPorStatus(
-              statusMatricula: "AGUARDANDO_ACEITE");
+              statusMatricula: "ATIVO");
       debugPrint("home-page:data:$dado");
       return dado;
     } on DioException catch (e) {
@@ -51,7 +51,7 @@ class MatriculaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Listagem de Matriculas Para Aceite'),
+        title: const Text('Listagem de Matriculas Ativas'),
       ),
       body: FutureBuilder<Response<BuiltList<MatriculaListagemDTO>>>(
           future: _getData(matriculasController),
@@ -73,10 +73,13 @@ class MatriculaPage extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.accessibility_outlined),
                 onPressed: () {
-                  debugPrint("insert - ");
                   Routefly.navigate(routePaths.necessidades.path).then((_) {});
                 },
-              )
+              ),
+              IconButton(icon: const Icon(Icons.account_circle_sharp),
+                onPressed: (){
+                   Routefly.navigate(routePaths.usuario).then((_){});
+                })
             ],
           )),
     );
@@ -88,13 +91,12 @@ class MatriculaPage extends StatelessWidget {
       return ListView.builder(
         itemCount: snapshot.data?.data?.length,
         itemBuilder: (BuildContext context, int index) {
-          debugPrint("Index:$index");
           return Center(
               child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            color: Colors.blue.withAlpha(70),
+            color: Theme.of(context).colorScheme.inversePrimary,
             elevation: 10,
             child: Column(
               mainAxisSize: MainAxisSize.min,

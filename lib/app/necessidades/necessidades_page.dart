@@ -76,7 +76,7 @@ class NecessidadePage extends StatelessWidget {
             IconButton(
                 icon: const Icon(Icons.add),
                 onPressed: () {
-                  Routefly.push(
+                  Routefly.pushNavigate(
                           routePaths.necessidades.insert.necessidadeInsert)
                       .then((_) {});
                 }),
@@ -99,9 +99,7 @@ class NecessidadePage extends StatelessWidget {
                         children: <Widget>[
                   ListTile(
                     title: Text("${snapshot.data!.data?[index].titulo}",
-                        style: const TextStyle(fontSize: 22.0)),
-                    subtitle: Text("${snapshot.data!.data?[index].observacoes}",
-                        style: const TextStyle(fontSize: 18.0)),
+                        style: const TextStyle(fontSize: 22.0))
                   )
                 ])));
           });

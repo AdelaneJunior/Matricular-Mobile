@@ -7,6 +7,7 @@ import 'app/necessidades/insert/necessidade_insert_page.dart' as a3;
 import 'app/necessidades/necessidades_page.dart' as a4;
 import 'app/prefs/prefs_page.dart' as a5;
 import 'app/recuperar_senha/recuperar_senha_page.dart' as a6;
+import 'app/usuario/usuario_page.dart' as a7;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -72,6 +73,15 @@ List<RouteEntity> get routes => [
       const a6.RecuperarSenha(),
     ),
   ),
+  RouteEntity(
+    key: '/usuario',
+    uri: Uri.parse('/usuario'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a7.UsuarioPage(),
+    ),
+  ),
 ];
 
 const routePaths = (
@@ -88,4 +98,5 @@ const routePaths = (
   ),
   prefs: '/prefs',
   recuperarSenha: '/recuperar_senha',
+  usuario: '/usuario',
 );

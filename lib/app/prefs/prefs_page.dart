@@ -37,7 +37,7 @@ class _PrefsPageState extends State<PrefsPage> {
     debugPrint("isValid Compute: ${url()}");
     return url().isNotEmpty;
   });
-  //late final isValid = computed(() => url().isNotEmpty);
+
   final Signal<String?> urlError = signal<String?>(null);
 
   AppAPI? appAPI;
@@ -55,7 +55,6 @@ class _PrefsPageState extends State<PrefsPage> {
       debugPrint("ok validado");
       appAPI?.config.url.set(url());
 
-
       Routefly.pop(context);
     }
   }
@@ -68,8 +67,6 @@ class _PrefsPageState extends State<PrefsPage> {
       urlTextController.text = url();
     }
 
-
-    //debugPrint("build-prefs:${prefs?.url}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
