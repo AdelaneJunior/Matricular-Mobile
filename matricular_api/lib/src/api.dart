@@ -11,6 +11,7 @@ import 'package:matricular/src/auth/bearer_auth.dart';
 import 'package:matricular/src/auth/oauth.dart';
 import 'package:matricular/src/api/advertencia_controller_api.dart';
 import 'package:matricular/src/api/auth_api_api.dart';
+import 'package:matricular/src/api/controle_periodo_matricula_controller_api.dart';
 import 'package:matricular/src/api/endereco_controller_api.dart';
 import 'package:matricular/src/api/informacoes_matricula_controller_api.dart';
 import 'package:matricular/src/api/matricula_controller_api.dart';
@@ -22,7 +23,7 @@ import 'package:matricular/src/api/tutor_controller_api.dart';
 import 'package:matricular/src/api/usuario_controller_api.dart';
 
 class Matricular {
-  static const String basePath = r'http://192.168.77.34:8080';
+  static const String basePath = r'http://localhost:8080';
 
   final Dio dio;
   final Serializers serializers;
@@ -96,6 +97,13 @@ class Matricular {
   /// by doing that all interceptors will not be executed
   AuthAPIApi getAuthAPIApi() {
     return AuthAPIApi(dio, serializers);
+  }
+
+  /// Get ControlePeriodoMatriculaControllerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  ControlePeriodoMatriculaControllerApi
+      getControlePeriodoMatriculaControllerApi() {
+    return ControlePeriodoMatriculaControllerApi(dio, serializers);
   }
 
   /// Get EnderecoControllerApi instance, base route and serializer can be overridden by a given but be careful,

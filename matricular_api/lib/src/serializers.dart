@@ -16,6 +16,7 @@ import 'package:matricular/src/model/date.dart';
 
 import 'package:matricular/src/model/advertencia_dto.dart';
 import 'package:matricular/src/model/auth_dto.dart';
+import 'package:matricular/src/model/controle_periodo_matricula_dto.dart';
 import 'package:matricular/src/model/credencial_dto.dart';
 import 'package:matricular/src/model/documento_matricula_dto.dart';
 import 'package:matricular/src/model/endereco_dto.dart';
@@ -24,10 +25,10 @@ import 'package:matricular/src/model/i_search_field_data_object.dart';
 import 'package:matricular/src/model/informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/matricula_dto.dart';
 import 'package:matricular/src/model/matricula_listagem_dto.dart';
-import 'package:matricular/src/model/matricula_visualizar_dto.dart';
 import 'package:matricular/src/model/message_response.dart';
 import 'package:matricular/src/model/necessidade_especial_dto.dart';
 import 'package:matricular/src/model/page_advertencia_dto.dart';
+import 'package:matricular/src/model/page_controle_periodo_matricula_dto.dart';
 import 'package:matricular/src/model/page_endereco_dto.dart';
 import 'package:matricular/src/model/page_informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/page_matricula_dto.dart';
@@ -49,6 +50,7 @@ import 'package:matricular/src/model/search_field_value.dart';
 import 'package:matricular/src/model/sort_object.dart';
 import 'package:matricular/src/model/turma_dto.dart';
 import 'package:matricular/src/model/tutor_dto.dart';
+import 'package:matricular/src/model/usuario_alterar_dto.dart';
 import 'package:matricular/src/model/usuario_dto.dart';
 import 'package:matricular/src/model/usuario_senha_dto.dart';
 
@@ -57,6 +59,7 @@ part 'serializers.g.dart';
 @SerializersFor([
   AdvertenciaDTO,
   AuthDTO,
+  ControlePeriodoMatriculaDTO,
   CredencialDTO,
   DocumentoMatriculaDTO,
   EnderecoDTO,
@@ -65,10 +68,10 @@ part 'serializers.g.dart';
   InformacoesMatriculaDTO,
   MatriculaDTO,
   MatriculaListagemDTO,
-  MatriculaVisualizarDTO,
   MessageResponse,
   NecessidadeEspecialDTO,
   PageAdvertenciaDTO,
+  PageControlePeriodoMatriculaDTO,
   PageEnderecoDTO,
   PageInformacoesMatriculaDTO,
   PageMatriculaDTO,
@@ -90,6 +93,7 @@ part 'serializers.g.dart';
   SortObject,
   TurmaDTO,
   TutorDTO,
+  UsuarioAlterarDTO,
   UsuarioDTO,
   UsuarioSenhaDTO,
 ])
@@ -125,6 +129,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(ResponsavelDTO)]),
         () => ListBuilder<ResponsavelDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ControlePeriodoMatriculaDTO)]),
+        () => ListBuilder<ControlePeriodoMatriculaDTO>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(InformacoesMatriculaDTO)]),

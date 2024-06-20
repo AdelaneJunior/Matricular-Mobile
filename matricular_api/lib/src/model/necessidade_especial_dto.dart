@@ -12,19 +12,19 @@ part 'necessidade_especial_dto.g.dart';
 ///
 /// Properties:
 /// * [id]
+/// * [matriculaId]
 /// * [titulo]
-/// * [observacoes]
 @BuiltValue()
 abstract class NecessidadeEspecialDTO
     implements Built<NecessidadeEspecialDTO, NecessidadeEspecialDTOBuilder> {
   @BuiltValueField(wireName: r'id')
   int? get id;
 
+  @BuiltValueField(wireName: r'matriculaId')
+  int? get matriculaId;
+
   @BuiltValueField(wireName: r'titulo')
   String? get titulo;
-
-  @BuiltValueField(wireName: r'observacoes')
-  String? get observacoes;
 
   NecessidadeEspecialDTO._();
 
@@ -63,17 +63,17 @@ class _$NecessidadeEspecialDTOSerializer
         specifiedType: const FullType(int),
       );
     }
+    if (object.matriculaId != null) {
+      yield r'matriculaId';
+      yield serializers.serialize(
+        object.matriculaId,
+        specifiedType: const FullType(int),
+      );
+    }
     if (object.titulo != null) {
       yield r'titulo';
       yield serializers.serialize(
         object.titulo,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.observacoes != null) {
-      yield r'observacoes';
-      yield serializers.serialize(
-        object.observacoes,
         specifiedType: const FullType(String),
       );
     }
@@ -109,19 +109,19 @@ class _$NecessidadeEspecialDTOSerializer
           ) as int;
           result.id = valueDes;
           break;
+        case r'matriculaId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.matriculaId = valueDes;
+          break;
         case r'titulo':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.titulo = valueDes;
-          break;
-        case r'observacoes':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.observacoes = valueDes;
           break;
         default:
           unhandled.add(key);

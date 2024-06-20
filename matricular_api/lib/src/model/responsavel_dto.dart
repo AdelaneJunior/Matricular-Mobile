@@ -35,7 +35,7 @@ abstract class ResponsavelDTO
 
   @BuiltValueField(wireName: r'vinculo')
   ResponsavelDTOVinculoEnum? get vinculo;
-  // enum vinculoEnum {  PAI,  MAE,  TIO,  VIZINHO,  AVO,  };
+  // enum vinculoEnum {  PAI,  MAE,  TIO,  VIZINHO,  AVO,  TIA,  BISAVO,  };
 
   @BuiltValueField(wireName: r'tutor')
   bool? get tutor;
@@ -214,8 +214,13 @@ class ResponsavelDTOVinculoEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VIZINHO')
   static const ResponsavelDTOVinculoEnum VIZINHO =
       _$responsavelDTOVinculoEnum_VIZINHO;
-  @BuiltValueEnumConst(wireName: r'AVO', fallback: true)
+  @BuiltValueEnumConst(wireName: r'AVO')
   static const ResponsavelDTOVinculoEnum AVO = _$responsavelDTOVinculoEnum_AVO;
+  @BuiltValueEnumConst(wireName: r'TIA')
+  static const ResponsavelDTOVinculoEnum TIA = _$responsavelDTOVinculoEnum_TIA;
+  @BuiltValueEnumConst(wireName: r'BISAVO', fallback: true)
+  static const ResponsavelDTOVinculoEnum BISAVO =
+      _$responsavelDTOVinculoEnum_BISAVO;
 
   static Serializer<ResponsavelDTOVinculoEnum> get serializer =>
       _$responsavelDTOVinculoEnumSerializer;

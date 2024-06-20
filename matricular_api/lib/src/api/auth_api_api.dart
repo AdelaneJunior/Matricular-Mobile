@@ -11,6 +11,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/auth_dto.dart';
 import 'package:matricular/src/model/credencial_dto.dart';
+import 'package:matricular/src/model/message_response.dart';
 import 'package:matricular/src/model/usuario_senha_dto.dart';
 
 class AuthAPIApi {

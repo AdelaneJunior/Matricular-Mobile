@@ -36,7 +36,7 @@ abstract class TurmaDTO implements Built<TurmaDTO, TurmaDTOBuilder> {
 
   @BuiltValueField(wireName: r'turno')
   TurmaDTOTurnoEnum? get turno;
-  // enum turnoEnum {  MATUTINO,  VESPERTINO,  NOTURNO,  };
+  // enum turnoEnum {  MATUTINO,  VESPERTINO,  INTEGRAL,  };
 
   @BuiltValueField(wireName: r'ano')
   int? get ano;
@@ -280,8 +280,8 @@ class TurmaDTOTurnoEnum extends EnumClass {
   static const TurmaDTOTurnoEnum MATUTINO = _$turmaDTOTurnoEnum_MATUTINO;
   @BuiltValueEnumConst(wireName: r'VESPERTINO')
   static const TurmaDTOTurnoEnum VESPERTINO = _$turmaDTOTurnoEnum_VESPERTINO;
-  @BuiltValueEnumConst(wireName: r'NOTURNO', fallback: true)
-  static const TurmaDTOTurnoEnum NOTURNO = _$turmaDTOTurnoEnum_NOTURNO;
+  @BuiltValueEnumConst(wireName: r'INTEGRAL', fallback: true)
+  static const TurmaDTOTurnoEnum INTEGRAL = _$turmaDTOTurnoEnum_INTEGRAL;
 
   static Serializer<TurmaDTOTurnoEnum> get serializer =>
       _$turmaDTOTurnoEnumSerializer;

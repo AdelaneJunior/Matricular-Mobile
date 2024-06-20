@@ -12,16 +12,16 @@ part 'i_search_field_data_object.g.dart';
 /// ISearchFieldDataObject
 ///
 /// Properties:
-/// * [description]
 /// * [id]
+/// * [description]
 @BuiltValue()
 abstract class ISearchFieldDataObject
     implements Built<ISearchFieldDataObject, ISearchFieldDataObjectBuilder> {
-  @BuiltValueField(wireName: r'description')
-  String? get description;
-
   @BuiltValueField(wireName: r'id')
   JsonObject? get id;
+
+  @BuiltValueField(wireName: r'description')
+  String? get description;
 
   ISearchFieldDataObject._();
 
@@ -53,18 +53,18 @@ class _$ISearchFieldDataObjectSerializer
     ISearchFieldDataObject object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.id != null) {
       yield r'id';
       yield serializers.serialize(
         object.id,
         specifiedType: const FullType(JsonObject),
+      );
+    }
+    if (object.description != null) {
+      yield r'description';
+      yield serializers.serialize(
+        object.description,
+        specifiedType: const FullType(String),
       );
     }
   }
@@ -92,19 +92,19 @@ class _$ISearchFieldDataObjectSerializer
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'description':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
-          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(JsonObject),
           ) as JsonObject;
           result.id = valueDes;
+          break;
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.description = valueDes;
           break;
         default:
           unhandled.add(key);

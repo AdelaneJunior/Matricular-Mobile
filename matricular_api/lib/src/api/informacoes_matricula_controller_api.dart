@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:matricular/src/api_util.dart';
 import 'package:matricular/src/model/informacoes_matricula_dto.dart';
+import 'package:matricular/src/model/message_response.dart';
 import 'package:matricular/src/model/page_informacoes_matricula_dto.dart';
 import 'package:matricular/src/model/pageable.dart';
 import 'package:matricular/src/model/search_field.dart';

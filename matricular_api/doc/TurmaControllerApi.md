@@ -5,16 +5,19 @@
 import 'package:matricular/api.dart';
 ```
 
-All URIs are relative to *http://192.168.77.34:8080*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**turmaControllerAdicionaAlunos**](TurmaControllerApi.md#turmacontrolleradicionaalunos) | **POST** /api/v1/turma/adicionaAlunos | 
+[**turmaControllerAdicionaAlunos**](TurmaControllerApi.md#turmacontrolleradicionaalunos) | **POST** /api/v1/turma/adiciona-alunos | 
+[**turmaControllerAdicionaUmAluno**](TurmaControllerApi.md#turmacontrolleradicionaumaluno) | **POST** /api/v1/turma/adiciona-um-aluno | 
 [**turmaControllerAlterar**](TurmaControllerApi.md#turmacontrolleralterar) | **PUT** /api/v1/turma/{id} | 
 [**turmaControllerIncluir**](TurmaControllerApi.md#turmacontrollerincluir) | **POST** /api/v1/turma | 
 [**turmaControllerListAll**](TurmaControllerApi.md#turmacontrollerlistall) | **GET** /api/v1/turma | 
 [**turmaControllerListAllPage**](TurmaControllerApi.md#turmacontrollerlistallpage) | **GET** /api/v1/turma/page | 
 [**turmaControllerObterPorId**](TurmaControllerApi.md#turmacontrollerobterporid) | **GET** /api/v1/turma/{id} | 
+[**turmaControllerQuantidadeTotal**](TurmaControllerApi.md#turmacontrollerquantidadetotal) | **GET** /api/v1/turma/quantidade-total | 
+[**turmaControllerRemoveAlunosTurma**](TurmaControllerApi.md#turmacontrollerremovealunosturma) | **POST** /api/v1/turma/remove-alunos/{idTurma} | 
 [**turmaControllerRemover**](TurmaControllerApi.md#turmacontrollerremover) | **DELETE** /api/v1/turma/{id} | 
 [**turmaControllerSearchFieldsAction**](TurmaControllerApi.md#turmacontrollersearchfieldsaction) | **POST** /api/v1/turma/search-fields | 
 [**turmaControllerSearchFieldsActionPage**](TurmaControllerApi.md#turmacontrollersearchfieldsactionpage) | **POST** /api/v1/turma/search-fields/page | 
@@ -25,6 +28,8 @@ Method | HTTP request | Description
 > TurmaDTO turmaControllerAdicionaAlunos(idTurma, requestBody)
 
 
+
+Busca a quantidade de registros
 
 ### Example
 ```dart
@@ -60,7 +65,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **turmaControllerAdicionaUmAluno**
+> TurmaDTO turmaControllerAdicionaUmAluno(idTurma, idAluno)
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getTurmaControllerApi();
+final int idTurma = 789; // int | 
+final int idAluno = 789; // int | 
+
+try {
+    final response = api.turmaControllerAdicionaUmAluno(idTurma, idAluno);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling TurmaControllerApi->turmaControllerAdicionaUmAluno: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idTurma** | **int**|  | 
+ **idAluno** | **int**|  | 
+
+### Return type
+
+[**TurmaDTO**](TurmaDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -273,6 +323,90 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **turmaControllerQuantidadeTotal**
+> int turmaControllerQuantidadeTotal()
+
+
+
+Busca a quantidade de registros
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getTurmaControllerApi();
+
+try {
+    final response = api.turmaControllerQuantidadeTotal();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling TurmaControllerApi->turmaControllerQuantidadeTotal: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**int**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **turmaControllerRemoveAlunosTurma**
+> TurmaDTO turmaControllerRemoveAlunosTurma(idTurma, requestBody)
+
+
+
+Remove alunos da turma
+
+### Example
+```dart
+import 'package:matricular/api.dart';
+
+final api = Matricular().getTurmaControllerApi();
+final int idTurma = 789; // int | 
+final BuiltList<int> requestBody = ; // BuiltList<int> | 
+
+try {
+    final response = api.turmaControllerRemoveAlunosTurma(idTurma, requestBody);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling TurmaControllerApi->turmaControllerRemoveAlunosTurma: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **idTurma** | **int**|  | 
+ **requestBody** | [**BuiltList&lt;int&gt;**](int.md)|  | 
+
+### Return type
+
+[**TurmaDTO**](TurmaDTO.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

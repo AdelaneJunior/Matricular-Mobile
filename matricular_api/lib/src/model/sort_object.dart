@@ -12,18 +12,18 @@ part 'sort_object.g.dart';
 ///
 /// Properties:
 /// * [empty]
-/// * [unsorted]
 /// * [sorted]
+/// * [unsorted]
 @BuiltValue()
 abstract class SortObject implements Built<SortObject, SortObjectBuilder> {
   @BuiltValueField(wireName: r'empty')
   bool? get empty;
 
-  @BuiltValueField(wireName: r'unsorted')
-  bool? get unsorted;
-
   @BuiltValueField(wireName: r'sorted')
   bool? get sorted;
+
+  @BuiltValueField(wireName: r'unsorted')
+  bool? get unsorted;
 
   SortObject._();
 
@@ -55,17 +55,17 @@ class _$SortObjectSerializer implements PrimitiveSerializer<SortObject> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.unsorted != null) {
-      yield r'unsorted';
-      yield serializers.serialize(
-        object.unsorted,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.sorted != null) {
       yield r'sorted';
       yield serializers.serialize(
         object.sorted,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.unsorted != null) {
+      yield r'unsorted';
+      yield serializers.serialize(
+        object.unsorted,
         specifiedType: const FullType(bool),
       );
     }
@@ -101,19 +101,19 @@ class _$SortObjectSerializer implements PrimitiveSerializer<SortObject> {
           ) as bool;
           result.empty = valueDes;
           break;
-        case r'unsorted':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.unsorted = valueDes;
-          break;
         case r'sorted':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.sorted = valueDes;
+          break;
+        case r'unsorted':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.unsorted = valueDes;
           break;
         default:
           unhandled.add(key);
