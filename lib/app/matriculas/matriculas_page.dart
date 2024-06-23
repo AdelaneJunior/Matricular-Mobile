@@ -78,7 +78,7 @@ class MatriculaPage extends StatelessWidget {
               ),
               IconButton(icon: const Icon(Icons.account_circle_sharp),
                 onPressed: (){
-                   Routefly.navigate(routePaths.usuario).then((_){});
+                   Routefly.navigate(routePaths.usuario.path).then((_){});
                 })
             ],
           )),

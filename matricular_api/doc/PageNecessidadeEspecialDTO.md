@@ -8,8 +8,8 @@ import 'package:matricular/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**totalElements** | **int** |  | [optional] 
 **totalPages** | **int** |  | [optional] 
+**totalElements** | **int** |  | [optional] 
 **size** | **int** |  | [optional] 
 **content** | [**BuiltList&lt;NecessidadeEspecialDTO&gt;**](NecessidadeEspecialDTO.md) |  | [optional] 
 **number** | **int** |  | [optional] 

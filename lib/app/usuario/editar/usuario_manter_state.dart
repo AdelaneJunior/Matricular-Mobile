@@ -1,8 +1,7 @@
 import 'package:signals/signals.dart';
 
-class UsuarioEditarState{
+class UsuarioManterState{
 
-  final id = signal('');
   final nomePessoa = signal('');
   final cargo = signal('');
   final email = signal('');

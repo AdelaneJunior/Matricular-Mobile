@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
-import 'package:first/app/usuario/editar/usuario_editar_page.dart';
+import 'package:first/app/usuario/editar/usuario_manter_dialog.dart';
 import 'package:first/app/usuario/usuario_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class _UsuarioPageState extends State<UsuarioPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Usuarios cadastrados"),
+        title: const Text("Usuários"),
       ),
       body: Stack(
         children: <Widget>[
@@ -67,7 +67,8 @@ class _UsuarioPageState extends State<UsuarioPage> {
             left: MediaQuery.of(context).size.width / 2 - 28,
             child: FloatingActionButton(
               onPressed: () {
-                // Ação do botão
+               Routefly.pushNavigate(routePaths.usuario.incluir.usuarioIncluir)
+                   .then((_){});
               },
               child: const Icon(Icons.add),
             ),
@@ -106,13 +107,13 @@ class _UsuarioPageState extends State<UsuarioPage> {
           final hasAnySelected = selectedItems.isNotEmpty;
           return Center(
             child: Card(
-              color: isSelected ? Colors.lightBlueAccent : null,
+              color: isSelected ? Colors.white70 : null,
               child: GestureDetector(
                 onTap: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return UsuarioEditDialog(
+                      return UsuarioManterDialog(
                         usuarioControllerApi: usuarioController,
                         idUsuario: usuario.id!,
                         pessoaNome: usuario.pessoaNome!,
@@ -137,11 +138,11 @@ class _UsuarioPageState extends State<UsuarioPage> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text("Alerta"),
+                            title: const Text("Alerta"),
                             content: Text("Itens selecionados: ${selectedItems.length}"),
                             actions: <Widget>[
                               TextButton(
-                                child: Text("OK"),
+                                child: const Text("OK"),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },

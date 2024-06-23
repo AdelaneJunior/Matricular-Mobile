@@ -7,7 +7,8 @@ import 'app/necessidades/insert/necessidade_insert_page.dart' as a3;
 import 'app/necessidades/necessidades_page.dart' as a4;
 import 'app/prefs/prefs_page.dart' as a5;
 import 'app/recuperar_senha/recuperar_senha_page.dart' as a6;
-import 'app/usuario/usuario_page.dart' as a7;
+import 'app/usuario/incluir/usuario_incluir_page.dart' as a7;
+import 'app/usuario/usuario_page.dart' as a8;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -74,12 +75,21 @@ List<RouteEntity> get routes => [
     ),
   ),
   RouteEntity(
+    key: '/usuario/incluir/usuario_incluir',
+    uri: Uri.parse('/usuario/incluir/usuario_incluir'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a7.UsuarioIncluirPage(),
+    ),
+  ),
+  RouteEntity(
     key: '/usuario',
     uri: Uri.parse('/usuario'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a7.UsuarioPage(),
+      const a8.UsuarioPage(),
     ),
   ),
 ];
@@ -98,5 +108,11 @@ const routePaths = (
   ),
   prefs: '/prefs',
   recuperarSenha: '/recuperar_senha',
-  usuario: '/usuario',
+  usuario: (
+    path: '/usuario',
+    incluir: (
+      path: '/usuario/incluir',
+      usuarioIncluir: '/usuario/incluir/usuario_incluir',
+    ),
+  ),
 );
