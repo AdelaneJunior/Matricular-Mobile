@@ -1,17 +1,16 @@
 import 'dart:async';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
 import 'package:first/app/usuario/editar/usuario_manter_dialog.dart';
-import 'package:first/app/usuario/usuario_state.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:matricular/matricular.dart';
 import 'package:provider/provider.dart';
 import 'package:routefly/routefly.dart';
+import 'package:signals/signals_flutter.dart';
 
 import '../../routes.dart';
 import '../api/matricular_api.dart';
-import '../utils/config_state.dart';
 
 class UsuarioPage extends StatefulWidget {
   const UsuarioPage({super.key});
@@ -30,9 +29,10 @@ class UsuarioPage extends StatefulWidget {
 class _UsuarioPageState extends State<UsuarioPage> {
   late UsuarioControllerApi usuarioController;
   List<int> selectedItems = [];
+  final refresh = signal('');
 
   Future<Response<BuiltList<UsuarioDTO>>> listaUsuarios(
-      UsuarioControllerApi usuarioControllerApi) {
+      UsuarioControllerApi usuarioControllerApi, String refresh) {
     try {
       return usuarioControllerApi.usuarioControllerListAll();
     } on DioException catch (exception) {
@@ -56,10 +56,15 @@ class _UsuarioPageState extends State<UsuarioPage> {
       ),
       body: Stack(
         children: <Widget>[
-          FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
-            future: listaUsuarios(usuarioController),
-            builder: (context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
-              return buildListView(snapshot);
+          ListenableBuilder(
+            listenable: Routefly.listenable,
+            builder: (BuildContext context, snapshot) {
+              return FutureBuilder<Response<BuiltList<UsuarioDTO>>>(
+                future: listaUsuarios(usuarioController, refresh.watch(context)),
+                builder: (context, AsyncSnapshot<Response<BuiltList<UsuarioDTO>>> snapshot) {
+                  return buildListView(snapshot);
+                },
+              );
             },
           ),
           Positioned(

@@ -37,11 +37,22 @@ class UsuarioIncluirPage extends StatefulWidget{
 
 class _UsuarioIncluirState extends State<UsuarioIncluirPage> {
 
+
  UsuarioIncluirState state = UsuarioIncluirState();
  late UsuarioControllerApi controllerApi;
- List<String> cargos = ['SECRETARIA', 'DIRETORA', 'COORDENADORA'];
+ List<String> cargos = [];
 
-
+  @override
+  void initState() {
+   super.initState();
+   UsuarioDTOCargoEnum.values.forEach((cargo)
+       { if(cargo.name != UsuarioDTOCargoEnum.ADMIN.name){
+         cargos.add(cargo.name);
+       }
+     }
+   );
+   state.cargo.value.isEmpty ? state.cargo.set(cargos.first) : state.cargo.value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +130,7 @@ class _UsuarioIncluirState extends State<UsuarioIncluirPage> {
               const SizedBox(height: 20),
               Flexible(
                 child: DropdownButtonFormField<String>(
-                  value: state.cargo.value.isEmpty ? cargos.first : state.cargo.value,
+                  value: state.cargo.value,
                   onChanged: (newValue) {
                     setState(() {
                       state.cargo.set(newValue ?? cargos.first);
@@ -131,10 +142,11 @@ class _UsuarioIncluirState extends State<UsuarioIncluirPage> {
                       child: Text(cargo),
                     );
                   }).toList(),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
+                  decoration:  InputDecoration(
+                    errorText: state.erroCargo.watch(context),
+                    border: const OutlineInputBorder(),
                     labelText: 'Cargo*',
-                    labelStyle: TextStyle(
+                    labelStyle: const TextStyle(
                         color: Colors.black),
                   ),
                 ),
@@ -143,6 +155,7 @@ class _UsuarioIncluirState extends State<UsuarioIncluirPage> {
               Flexible(
                   child: TextField(
                     onChanged: state.senha.set,
+                    obscureText: true,
                     decoration:  InputDecoration(
                         border: const OutlineInputBorder(),
                         label: const Text("Senha*"),
@@ -155,6 +168,7 @@ class _UsuarioIncluirState extends State<UsuarioIncluirPage> {
               Flexible(
                   child: TextField(
                     onChanged: state.confirmaSenha.set,
+                    obscureText: true,
                     decoration:  InputDecoration(
                         border: const OutlineInputBorder(),
                         label: const Text("Confirmar Senha*"),
@@ -218,5 +232,6 @@ class _UsuarioIncluirState extends State<UsuarioIncluirPage> {
       ),
     );
   }
+
 
 }

@@ -26,17 +26,17 @@ class UsuarioIncluirState {
   late final validaPessoaNome = computed(() => pessoaNome.value != null &&
       pessoaNome.value != '');
   late final validaPessoaCpf = computed(() => pessoaCpf.value != null &&
-      pessoaCpf.value != '' && cpfValido());
+      pessoaCpf.value != '' );
   late final validaPessoaTelefone = computed(() => pessoaTelefone.value != null &&
       pessoaTelefone.value != '');
   late final validaEmail = computed(() => email.value != null &&
-      email.value != '' && emailValido());
+      email.value != '');
   late final validaCargo = computed(() => cargo.value != null &&
       cargo.value != '');
   late final validaSenha = computed(() => senha.value != null &&
-      senha.value != '' && senha.value.length >= 8);
+      senha.value != '');
   late final validaConfirmaSenha = computed(() => confirmaSenha.value != null &&
-      confirmaSenha.value != '' && confirmaSenha.value.length >= 8);
+      confirmaSenha.value != '');
 
 
   incluir(UsuarioControllerApi controller, BuildContext context) async {
@@ -46,7 +46,7 @@ class UsuarioIncluirState {
             .usuarioControllerIncluir(usuarioDTO: construirUsuarioDTO());
         if(response.statusCode == 200){
           showMessage(context, "Usuário incluido com Sucesso");
-          Routefly.pop(context);
+          Navigator.pop(context, "Usuario Incluido");
         }else{
           mostrarDialogSimples(context, response.statusMessage.toString(),
               "ERRO");
@@ -59,7 +59,7 @@ class UsuarioIncluirState {
   }
 
   validaInclusao(){
-    String erro = 'Erro';
+    String erro = 'Campo obrigatorio';
     bool ok = true;
     if(!validaPessoaNome.value){
       erroPessoaNome.set(erro);
@@ -72,7 +72,12 @@ class UsuarioIncluirState {
       erroPessoaCpf.set(erro);
       ok = false;
     }else{
-      erroPessoaCpf.set(null);
+      if(!cpfValido()){
+        erroPessoaCpf.set('CPF invalido');
+        ok = false;
+      }else {
+        erroPessoaCpf.set(null);
+      }
     }
 
     if(!validaPessoaTelefone.value){
@@ -86,7 +91,12 @@ class UsuarioIncluirState {
       erroEmail.set(erro);
       ok = false;
     }else{
-      erroEmail.set(null);
+      if(!emailValido()){
+        erroEmail.set("Email invalido");
+        ok = false;
+      }else {
+        erroEmail.set(null);
+      }
     }
 
     if(!validaCargo.value){
@@ -100,7 +110,12 @@ class UsuarioIncluirState {
       erroSenha.set(erro);
       ok = false;
     }else{
-      erroSenha.set(null);
+      if(senha.toString().length < 8){
+        erroSenha.set("Senha deve ter pelo menos 8 caracteres");
+        ok = false;
+      }else {
+        erroSenha.set(null);
+      }
     }
 
     if(!validaConfirmaSenha.value){
@@ -109,11 +124,13 @@ class UsuarioIncluirState {
     }else{
       if(senha.value != confirmaSenha.value){
         erroConfirmarSenha.set('senhas diferentes');
-        erroSenha.set('senhas diferentes');
+        erroSenha.value == null ?
+          erroSenha.set('senhas diferentes') : erroSenha ;
         ok = false;
       }else{
         erroConfirmarSenha.set(null);
-        erroSenha.set(null);
+        erroSenha.value == null ?
+         erroSenha.set(null) : erroSenha;
       }
     }
 

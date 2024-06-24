@@ -31,6 +31,8 @@ class _UsuarioManterDialogState extends State<UsuarioManterDialog> {
   UsuarioManterState state = UsuarioManterState();
   late UsuarioControllerApi controllerApi;
   var isEdicao = false;
+  List<String> cargos = [];
+
   @override
   void initState() {
     super.initState();
@@ -41,6 +43,13 @@ class _UsuarioManterDialogState extends State<UsuarioManterDialog> {
     state.email.value = widget.email;
     state.telefone.value = widget.pessoaTelefone;
     state.cargo.value = widget.cargo;
+
+    UsuarioDTOCargoEnum.values.forEach((cargo)
+        { if(cargo.name != UsuarioDTOCargoEnum.ADMIN.name){
+          cargos.add(cargo.name);
+        }
+      }
+    );
   }
 
   realizaAtualizacao() async {
@@ -206,18 +215,32 @@ class _UsuarioManterDialogState extends State<UsuarioManterDialog> {
                       labelText: 'Nome${isEdicao ? '*' : ''}'),
                 ),
                 const SizedBox(height: 1),
-                TextField(
-                  enabled: isEdicao,
-                  controller: TextEditingController()
-                    ..text = state.cargo.toString(),
-                  style: const TextStyle(color: Colors.black),
-                  onChanged: state.nomePessoa.set,
-                  decoration: InputDecoration(
-                      disabledBorder:  InputBorder.none,
-                      labelStyle: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      labelText: 'Cargo${isEdicao ? '*' : ''}'),
+                IgnorePointer(
+                  ignoring: !isEdicao,
+                  child: DropdownButtonFormField<String>(
+                    value: state.cargo.value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                      fontSize: 16
+                    ),
+                    onChanged: (newValue) {
+                      setState(() {
+                        state.cargo.set(newValue ?? cargos.first);
+                      });
+                    },
+                    items: cargos.map((String cargo) {
+                      return DropdownMenuItem<String>(
+                        value: cargo,
+                        child: Text(cargo),
+                      );
+                    }).toList(),
+                    decoration:  InputDecoration(
+                      border: isEdicao ? const UnderlineInputBorder() : InputBorder.none ,
+                      labelText: 'Cargo${isEdicao ? '*' : ''}',
+                      labelStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 TextField(
                   enabled: isEdicao,
